@@ -2,7 +2,7 @@
 ##Maven
 **/target/
 **/build
-**/out 
+**/out  
  
 ##eclipse
 **/.settings
