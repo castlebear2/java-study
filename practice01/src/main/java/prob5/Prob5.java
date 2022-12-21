@@ -19,11 +19,8 @@ public class Prob5 {
 				System.out.println(arr[0]+""+arr[1]+"짝짝");
 			}
 			if (ans == 1) {
-				if(arr[0]==0){
-					System.out.println(arr[1]+"짝");
-				}else {
-					System.out.println(arr[0]+""+arr[1]+"짝");
-				}
+				arr[0]*=10;
+				System.out.println(arr[0]+arr[1]+"짝");	
 			}
 			
 		
