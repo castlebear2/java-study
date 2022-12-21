@@ -12,10 +12,18 @@ public class Prob04 {
 	public static char[] reverse(String str) {
 		/* 코드를 완성합니다 */
 		int length = str.length();
+		char tmp;
 		char[] c = new char[length];
-		for(int i=str.length()-1; i>=0; i--) {
-			c[str.length()-1-i] = str.charAt(i);
+		for(int i=0; i<length; i++) {
+			c[i] = str.charAt(i);
 		}
+		
+		for(int i=0; i<length/2; i++) {
+			tmp = c[i];
+			c[i] = c[length-1-i];
+			c[length-1-i] = tmp;
+		}
+		
 		return c;
 	}
 
