@@ -13,15 +13,19 @@ public class NSLookup {
 
 		while (true) {
 			String address = sc.nextLine();
-			if(address=="exit") break;
+			if (address.equals("exit"))
+				break;
 			try {
 				inetAddresses = InetAddress.getAllByName(address);
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
+			} finally {
+				if (sc == null)
+					sc.close();
 			}
 
 			System.out.println(inetAddresses[0]);
-			
+
 		}
 	}
 
