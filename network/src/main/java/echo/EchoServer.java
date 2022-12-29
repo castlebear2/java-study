@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class EchoServer {
 
@@ -18,7 +19,7 @@ public class EchoServer {
 		try {
 			serverSocket = new ServerSocket();
 
-			serverSocket.bind(new InetSocketAddress("0.0.0.0", PORT));
+			serverSocket.bind(new InetSocketAddress("0.0.0.0", PORT), 10);
 			Log("starts...[port:" + PORT + "]");
 
 			Socket socket = serverSocket.accept();
@@ -29,20 +30,22 @@ public class EchoServer {
 			Log("connected by client[" + remoteHostAddress + ":" + remotePort + "]");
 
 			try {
-				PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(),"utf-8"), true);
+				PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
 				// bufferedreader로 했으니까, 경계를 알고 있어야해서 개행을 해야한다.!!!
 				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
 
 				while (true) {
 					String data = br.readLine();
-					if(data == null) {
+					if (data == null) {
 						Log("closed by client");
 						break;
-					}   
-					
+					}
+
 					Log("received:" + data);
 					pw.println(data);
 				}
+			} catch (SocketException ex) {
+				System.out.println("[server] suddenly closed by client");
 			} catch (IOException ex) {
 				Log("error:" + ex);
 			} finally {
