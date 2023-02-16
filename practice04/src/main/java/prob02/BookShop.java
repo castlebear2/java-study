@@ -23,23 +23,19 @@ public class BookShop {
 		int num = scanner.nextInt();
 		scanner.close();
 		
-		
 		// (1) 입력된 번호에 맞는 책을 찾아 대여 되었음(상태코드=0)을 체크 합니다.
-		for(int i=0; i<10; i++) {
-			if(books[i].getBookNo() == num) {
-				books[i].setStateCode(0);
-				System.out.println("책번호:"+num+" "+books[i].getTitle() +"가 대여되었습니다");
+		for(Book b : books) {
+			if(b.getBookNo() == num){
+				b.rent();
 			}
 		}
-		
-		
 		// (2) Book 객체의 정보를 출력
 		System.out.println("*****도서 정보 출력하기******");
-		displayBookInfo( books );
+		print(books);
 	}
-	public static void displayBookInfo(Book[] b) {
-		for(int i=0; i<b.length; i++) {
-			b[i].print();
+	public static void print(Book[] b) {
+		for (Book bo : b) {
+			System.out.println(bo.toString());
 		}
 	}
 }
