@@ -6,6 +6,11 @@ public class Person {
 	private String name;
 	
 	/* 코드 작성 */
+	public Person() {
+		numberOfPerson++;
+		this.age = 12;
+		this.name ="";
+	}
 	public Person(int age, String name) {
 		numberOfPerson++;
 		this.age = age;
@@ -13,15 +18,16 @@ public class Person {
 	}
 	public Person(String name) {
 		numberOfPerson++;
-		this.name = name;
 		this.age = 12;
+		this.name = name;
 	}
 	
 	public void selfIntroduce() {
-		System.out.println("내이름은 "+ name +"이며, 나이는 "+ age + "살 입니다.");
+		System.out.println("내 이름은 " + name + "이며, 나이는 " + age+"살입니다.");
+		
 	}
-	
-	public static String getPopulation() {
-		return Integer.toString(numberOfPerson);
+	public int getPopulation() {
+		return numberOfPerson;
+		
 	}
 }
